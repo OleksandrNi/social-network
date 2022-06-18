@@ -1,0 +1,22 @@
+.dialogs {
+  grid-area: c;
+  background-color: burlywood;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+
+  &__item {
+
+    &-name {
+
+    }
+  }
+
+  &__messages {
+
+
+    &-message {
+
+    }
+  }
+}
+

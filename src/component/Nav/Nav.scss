@@ -1,0 +1,25 @@
+.nav {
+  grid-area: n;
+  background-color: blueviolet;
+  padding: 20px;
+
+  &__item {
+    
+    &-link {
+      color: beige;
+      text-decoration: none;
+
+      &:focus {
+        color: gold;
+      }
+
+      &:hover {
+        color: aqua;
+      }
+
+      &:active {
+        color: gold;
+      }
+    }
+  }
+}
