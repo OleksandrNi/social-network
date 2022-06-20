@@ -3,14 +3,26 @@ import './MyPosts.css';
 import Post from "./Post/Post";
 
 const MyPosts = (props) => {
+
+  const addTextElement = React.createRef();
+
+  const addPost = () => {
+    props.addPost()
+  };
+
+  const onPostChange = () => {
+    const text = addTextElement.current.value;
+    props.updateNewPostText(text);
+  };
+
   return (
-    <main className='profile'>
-        <div>
+    <main>
+        <div className='posts'>
           my posts
-          <div>
+          <div className='posts__addRemoveArea'>
             new post
-            <textarea name="" id="" cols="30" rows="10"></textarea>
-            <button>Add post</button>
+            <textarea onChange={onPostChange} ref={addTextElement} value={props.newPostText} cols="30" rows="5"/>
+            <button onClick={ addPost }>Add post</button>
             <button>Remove post</button>
           </div>
           <div>

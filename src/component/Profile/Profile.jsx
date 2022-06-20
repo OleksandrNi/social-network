@@ -5,15 +5,14 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 const Profile = (props) => {
 
-  // const postsData = [
-  //   {id: 1, message: 'Hello!', likeCount: 5},
-  //   {id: 2, message: `I'm happy!`, likeCount: 15},
-  // ];
-
   return (
     <main className='profile'>
         <ProfileInfo />
-        <MyPosts postsData={props.postsData}/>
+        <MyPosts 
+        postsData={props.profilePage.postsData} 
+        newPostText={props.profilePage.newPostText}
+        updateNewPostText={props.updateNewPostText}
+        addPost={props.addPost} />
       </main>
   )
 }
