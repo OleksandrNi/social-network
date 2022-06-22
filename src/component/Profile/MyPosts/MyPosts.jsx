@@ -1,29 +1,30 @@
 import React from "react";
 import './MyPosts.css';
 import Post from "./Post/Post";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../redux/state";
+
+
 
 const MyPosts = (props) => {
-
   const addTextElement = React.createRef();
 
   const addPost = () => {
-    props.addPost()
+    props.dispatch(addPostActionCreator())
   };
 
   const onPostChange = () => {
     const text = addTextElement.current.value;
-    props.updateNewPostText(text);
+    
+    props.dispatch(updateNewPostTextActionCreator(text));
   };
 
   return (
     <main>
         <div className='posts'>
           my posts
-          <div className='posts__addRemoveArea'>
-            new post
+          <div className='posts__addPost'>
             <textarea onChange={onPostChange} ref={addTextElement} value={props.newPostText} cols="30" rows="5"/>
             <button onClick={ addPost }>Add post</button>
-            <button>Remove post</button>
           </div>
           <div>
             {props.postsData.map(post => 

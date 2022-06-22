@@ -8,6 +8,7 @@ import Nav from './component/Nav/Nav';
 import News from './component/News/News';
 import Profile from './component/Profile/Profile';
 import Settings from './component/Settings/Settings';
+// import store from './redux/state';
 
 const App = (props) => {
 
@@ -19,12 +20,9 @@ const App = (props) => {
       <Routes>
         <Route path="/profile" element = {<Profile 
         profilePage={props.state.profilePage}
-        updateNewPostText={props.updateNewPostText} 
-        addPost={props.addPost}/>}/>
-        <Route path="/dialogs" 
-          element = {<Dialogs 
-            state={props.state.messagePage} 
-          />}
+        dispatch={props.dispatch}/>}/>
+
+        <Route path="/dialogs" element = {<Dialogs store={props.store} />}
         />
         <Route path="/news" element = {<News />}/>
         <Route path="/music" element = {<Music />}/>
