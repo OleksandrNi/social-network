@@ -8,10 +8,9 @@ import Nav from './component/Nav/Nav';
 import News from './component/News/News';
 import Profile from './component/Profile/Profile';
 import Settings from './component/Settings/Settings';
-// import store from './redux/state';
 
 const App = (props) => {
-
+  console.log(props)
   return (
     <div className='app'>
       <Header />
@@ -19,7 +18,7 @@ const App = (props) => {
       <div className='content'>
       <Routes>
         <Route path="/profile" element = {<Profile 
-        profilePage={props.state.profilePage}
+        profilePage={props.state.profilePageReducer}
         dispatch={props.dispatch}/>}/>
 
         <Route path="/dialogs" element = {<Dialogs store={props.store} />}
