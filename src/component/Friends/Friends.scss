@@ -1,5 +1,33 @@
-.music {
+.friends {
   grid-area: c;
   background-color: burlywood;
+}
+
+.users {
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  border: 1px solid black;
+  margin: 10px;
+
+  &__block {
+    &-photo {
+      height: 60px;
+      width: 80px;
+    }
+
+    &-followButton {
+      width: 80px;
+    }
+  }
+
+  &__info {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+  }
 }
 

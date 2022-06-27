@@ -2,6 +2,12 @@ import friendsDataReducer from "./friendsDataReducer copy";
 import messagePageReducer from "./messagePageReducer";
 import profilePageReducer from "./profilePageReducer";
 
+      // ([
+      //   {id: 1, photoUrl: photoUrl, followed: true, fullName: 'Alex', status: `wait of some`, location: {country: 'Ukraine', city: 'Odessa'}},
+      //   {id: 2, photoUrl: photoUrl, followed: false, fullName: 'Elena', status: `hello everybody`, location: {country: 'Ukraine', city: 'Odessa'}},
+      //   {id: 3, photoUrl: photoUrl, followed: true, fullName: 'Max', status: `glad to see You`, location: {country: 'Ukraine', city: 'Odessa'}},    
+      // ]);
+
 const store = {
   _state: {
     messagePage: {
@@ -50,7 +56,5 @@ const store = {
     this._callSubscriber(this._state);
   }
 }
-
-window.store = store;
 
 export default store;

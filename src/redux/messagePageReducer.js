@@ -25,15 +25,19 @@ const messagePageReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body;
-      return state;
-
-    case SEND_MESSAGE:
+      return {
+        ...state,
+        newMessageBody: action.body,
+      }
+    
+    case SEND_MESSAGE: 
       const body = state.newMessageBody;
-      state.newMessageBody = '';
-      state.messagesData.push({id: 11, message: body});
-      return state;
-  
+      return {
+        ...state,
+        newMessageBody: '',
+        messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: body}]
+      }
+    
     default:
       return state;
   }
