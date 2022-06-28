@@ -2,10 +2,7 @@ const SEND_MESSAGE = 'SEND-MESSAGE';
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 
 export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageBodyCreator = (body) => ({
-    type: UPDATE_NEW_MESSAGE_BODY,
-    body: body,
-});
+export const updateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body});
 
 const initialState = {
   dialogData: [
@@ -34,8 +31,8 @@ const messagePageReducer = (state = initialState, action) => {
       const body = state.newMessageBody;
       return {
         ...state,
+        messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: body}],
         newMessageBody: '',
-        messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: body}]
       }
     
     default:
