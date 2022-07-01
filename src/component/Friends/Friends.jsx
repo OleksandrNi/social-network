@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import './Friends.scss';
 
 const Friends = (props) => {
@@ -30,7 +31,9 @@ const Friends = (props) => {
       props.users.map(user => 
         <div className="users" key={user.id}>
           <div className="users__block">
-            <img src={user.photos.small ? user.photos.small : photoUrl} className="users__block-photo" alt="photouser" />
+            <NavLink to={'/profile/' + user.id}>
+              <img src={user.photos.small ? user.photos.small : photoUrl} className="users__block-photo" alt="photouser" />
+            </NavLink>
             <div> {user.followed
               ? <button className="users__block-followButton" onClick={() => {props.unfollow(user.id)}}>Follow</button>
               : <button className="users__block-followButton" onClick={() => {props.follow(user.id)}}>Unfollow</button>

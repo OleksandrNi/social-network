@@ -1,18 +1,26 @@
 import React from "react";
+import Preloader from "../../common/Preloader/Preloader";
 import './ProfileInfo.scss';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+
+  if (!props.profile) {
+    return <Preloader />
+  }
+
   return (
     <div>
-      <div>
-        background picture
-        {/* <img src="https://img.freepik.com/free-photo/big-city_1127-3102.jpg?size=626&ext=jpg&ga=GA1.2.1589569332.1637280000" alt="city" /> */}
+      <div> {props.profile.photos.small 
+      ? <img src={props.profile.photos.small} alt="user avatar" />
+      : null}
       </div>
-      <div>
-        ava+descript
-        {/* <img src="https://media.istockphoto.com/photos/smart-city-and-abstract-dot-point-connect-with-gradient-line-picture-id1203720647?k=20&m=1203720647&s=612x612&w=0&h=MWpNrTup0fDRKkGI2GlKbXKp8UqSufJBV2iD92fIOIk=" alt="city_logo" /> */}
-      </div>
-    </div>    
+      <div>My id: {props.profile.userId}</div>
+      <div>Friends call me: {props.profile.fullName}</div>
+      <div>About me: {props.profile.aboutMe}</div>
+    <div>{props.profile.contacts.facebook ? `My facebook: ${props.profile.contacts.facebook}` : ''}</div>
+      <div>Looking for a JOB: {props.profile.lookingForAJob ? 'YEAP!!!' : 'NO!NO!NO!'}</div>
+      <div> {props.profile.lookingForAJob ? `What Job I need? -> ${props.profile.lookingForAJobDescription}` : ''}</div>
+    </div>
   )
 }
 

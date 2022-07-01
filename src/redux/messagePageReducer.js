@@ -28,11 +28,11 @@ const messagePageReducer = (state = initialState, action) => {
       }
     
     case SEND_MESSAGE: 
-      const body = state.newMessageBody;
+      // const body = state.newMessageBody;
       return {
         ...state,
-        messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: body}],
-        newMessageBody: '',
+        messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: state.newMessageBody}],
+        newMessageBody: "",
       }
     
     default:
