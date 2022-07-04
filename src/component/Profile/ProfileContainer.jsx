@@ -1,26 +1,28 @@
-import axios from "axios";
+// import axios from "axios";
 import React from "react";
 import { connect } from "react-redux";
-import { setUserProfile } from "../../redux/profilePageReducer";
+import { getUserProfile } from "../../redux/profileReducer";
 import Profile from "./Profile";
 import './Profile.scss';
 import {
+  Navigate,
   useLocation,
   useNavigate,
   useParams,
 } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 const withRouter = (Component) => {
   function ComponentWithRouterProp(props) {
-      let location = useLocation();
-      let navigate = useNavigate();
-      let params = useParams();
-      return (
-          <Component
-              {...props}
-              router={{ location, navigate, params }}
-          />
-      );
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+        <Component
+            {...props}
+            router={{ location, navigate, params }}
+        />
+    );
   }
 
   return ComponentWithRouterProp;
@@ -29,16 +31,13 @@ const withRouter = (Component) => {
 class ProfileContainer extends React.Component {
 
   componentDidMount() {
-    console.log(this.props.router)
     let userId = this.props.router.params.userId;
     if (!userId) {
       userId = 2;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-    .then(response => {
-      this.props.setUserProfile(response.data);
-    });
+    this.props.getUserProfile(userId);
   }
+
 
   render() {
     return (
@@ -47,8 +46,10 @@ class ProfileContainer extends React.Component {
   }  
 }
 
+let AuthRedirectComponent = withAuthRedirect(ProfileContainer)
+
 const mapStateToProps =(state) => ({
-  profile: state.profilePageReducer.profile,
+  profile: state.profileReducer.profile,
 });
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getUserProfile})(withRouter(AuthRedirectComponent));

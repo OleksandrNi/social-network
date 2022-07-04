@@ -18,7 +18,7 @@ const initialState = {
   newMessageBody: '',
 }
 
-const messagePageReducer = (state = initialState, action) => {
+const messageReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
@@ -28,11 +28,10 @@ const messagePageReducer = (state = initialState, action) => {
       }
     
     case SEND_MESSAGE: 
-      // const body = state.newMessageBody;
       return {
         ...state,
         messagesData: [...state.messagesData, {id: state.messagesData.length + 1, message: state.newMessageBody}],
-        newMessageBody: "",
+        newMessageBody: '',
       }
     
     default:
@@ -40,4 +39,4 @@ const messagePageReducer = (state = initialState, action) => {
   }
 };
 
-export default messagePageReducer;
+export default messageReducer;

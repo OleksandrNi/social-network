@@ -1,10 +1,11 @@
 import React from "react";
+import { Navigate } from "react-router-dom"
 import DialogsItem from "./DialogItem/DialogsItem";
 import DialogsMessage from "./DialogMessage/DialogsMessage";
 import './Dialogs.scss';
 
 class Dialogs extends React.Component {
-  newMessageBody = this.props.messagePageReducer.newMessageBody;
+  newMessageBody = this.props.messageReducer.newMessageBody;
   
   
   onSendMessageClick = () => {
@@ -18,15 +19,17 @@ class Dialogs extends React.Component {
 
 
   render() {
+
+    if (this.props.isAuth === false) {return <Navigate to={'/login'}/>}
     return (
       <div className="dialogs">
         <div className="dialogs__item">
-          {this.props.messagePageReducer.dialogData.map(dialog => 
+          {this.props.messageReducer.dialogData.map(dialog => 
             <DialogsItem key={dialog.id} name={dialog.name} id={dialog.id}/>
           )}
         </div>
         <div className="gialogs__messages">
-          {this.props.messagePageReducer.messagesData.map(message => 
+          {this.props.messageReducer.messagesData.map(message => 
               <DialogsMessage key={message.id} message={message.message} id={message.id}/>
             )}
         </div>
@@ -38,6 +41,6 @@ class Dialogs extends React.Component {
       </div>
     );
   };
-}
+};
 
 export default Dialogs;

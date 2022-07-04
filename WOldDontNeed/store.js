@@ -1,6 +1,6 @@
-import friendsDataReducer from "./friendsDataReducer copy";
-import messagePageReducer from "../src/redux/messagePageReducer";
-import profilePageReducer from "../src/redux/profilePageReducer";
+import friendsReducerReducer from "./friendsReducerReducer copy";
+import messageReducer from "../src/redux/messageReducer";
+import profileReducer from "../src/redux/profileReducer";
 
       // ([
       //   {id: 1, photoUrl: photoUrl, followed: true, fullName: 'Alex', status: `wait of some`, location: {country: 'Ukraine', city: 'Odessa'}},
@@ -30,7 +30,7 @@ const store = {
       ],
       newPostText: 'some blabla',
     }, 
-    friendsData: [
+    friendsReducer: [
       {id: 1, name: 'Alex'},
       {id: 2, name: 'Elina'},
       {id: 3, name: 'Maksim'}
@@ -49,9 +49,9 @@ const store = {
 
   dispatch(action) {
 
-    this._state.profilePage = profilePageReducer(this._state.profilePage, action);
-    this._state.messagePage = messagePageReducer(this._state.messagePage, action);
-    this._state.friendsData = friendsDataReducer(this._state.friendsData, action);
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.messagePage = messageReducer(this._state.messagePage, action);
+    this._state.friendsReducer = friendsReducerReducer(this._state.friendsReducer, action);
 
     this._callSubscriber(this._state);
   }
