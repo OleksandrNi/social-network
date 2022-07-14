@@ -15,12 +15,13 @@ class Dialogs extends React.Component {
   onNewMessageChange = (event) => {
     const body = event.target.value;
     this.props.updateNewMessageBody(body);
+    console.log(this.props.messageReducer.newMessageBody)
   }
 
 
   render() {
 
-    if (this.props.isAuth === false) {return <Navigate to={'/login'}/>}
+    // if (this.props.isAuth === false) {return <Navigate to={'/login'}/>}
     return (
       <div className="dialogs">
         <div className="dialogs__item">
@@ -34,7 +35,7 @@ class Dialogs extends React.Component {
             )}
         </div>
         <textarea 
-        value={this.props.newMessageBody}
+        value={this.props.messageReducer.newMessageBody}
         onChange={this.onNewMessageChange} 
         placeholder='enter your message'></textarea>
         <button onClick={this.onSendMessageClick}>Send message</button>

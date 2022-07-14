@@ -5,6 +5,7 @@ import Friends from "./Friends";
 import Preloader from "../common/Preloader/Preloader";
 // import { Navigate } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class FriendsContainer extends React.Component {
   componentDidMount() {
@@ -42,12 +43,14 @@ const mapStateToProps = (state) => ({
   followingInProgress: state.friendsReducer.followingInProgress,
 });
 
-const AuthRedirectComponent = withAuthRedirect(FriendsContainer)
-
-export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  toggleFollowingProgress,
-  getUsers,
-})(AuthRedirectComponent);
+export default compose(
+  connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    toggleFollowingProgress,
+    getUsers,
+  }),
+  withAuthRedirect
+)(FriendsContainer)
+ 
