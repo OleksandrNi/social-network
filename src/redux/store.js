@@ -1,4 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
+import { reducer as formReducer } from "redux-form";
 import thunkMiddleware from "redux-thunk"
 import authReducer from "./authReducer";
 import friendsReducer from "./friendsReducer";
@@ -10,6 +11,7 @@ const reducers = combineReducers({
   messageReducer,
   friendsReducer,
   authReducer,
+  form: formReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

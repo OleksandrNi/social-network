@@ -1,37 +1,43 @@
 import React from "react";
+import { Field, reduxForm } from "redux-form";
 import './MyPosts.css';
 import Post from "./Post/Post";
+import { required, maxLengthCreator } from '../../../utils/validators/validators';
+import { Textarea } from "../../common/FormsControl/FormsControl";
 
-class MyPosts extends React.Component {
-  addTextElement = React.createRef();
+const MyPosts = (props) => {
 
-  onAddPost = () => {
-    this.props.addPost();
+  const onAddPost = (values) => {
+    props.addPost(values.newPostText);
   };
 
-  onPostChange = () => {
-    const text = this.addTextElement.current.value;
-    this.props.updateNewPostText(text)
-  };
-
-  render() {
-    return (
-      <main>
-          <div className='posts'>
-            my posts
-            <div className='posts__addPost'>
-              <textarea onChange={this.onPostChange} ref={this.addTextElement} value={this.props.newPostText} cols="30" rows="5"/>
-              <button onClick={this.onAddPost}>Add post</button>
-            </div>
-            <div>
-              {this.props.postsData.map(post => 
-                <Post key={post.id} message={post.message} countLike={post.likeCount} />
-              )}
-            </div>
-          </div>
-        </main>
-    )
-  }
+  return (
+    <main>
+      <div className='posts'>
+        my posts
+        <AddNewPostForm onSubmit={onAddPost} />
+        <div>
+          {props.postsData.map(post => 
+            <Post key={post.id} message={post.message} countLike={post.likeCount} />
+          )}
+        </div>
+      </div>
+    </main>
+  )
 }
+const maxLength10 = maxLengthCreator(10)
+
+let AddNewPostForm = (props) => {
+
+  return (
+    <form onSubmit={props.handleSubmit} className='posts__addPost'>
+    <Field component={Textarea} name="newPostText"
+      validate={[required, maxLength10]} placeholder={'Post message'} />
+      <button>Add post</button>
+    </form>
+  )
+}
+
+AddNewPostForm = reduxForm({form: "ProfileAddNewPostForm"})(AddNewPostForm)
 
 export default MyPosts;
