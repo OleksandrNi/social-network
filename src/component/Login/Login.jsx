@@ -15,11 +15,14 @@ const LoginForm = (props) => {
       </div>
       <div>
         <Field placeholder="Password" name="password" 
-        component={Input} validate={[required]} type="password"/>
+        component={Input} validate={[required]} type="text"/>
       </div>
       <div>
         <Field component={'input'} name="rememberMe" type="checkbox" /> remember me
       </div>
+      {props.error && <div className="form-summary-error">
+        {props.error}
+      </div>}
       <div>
         <button>login</button>
       </div>
