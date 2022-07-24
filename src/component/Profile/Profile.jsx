@@ -3,11 +3,11 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import './Profile.scss';
 
-const Profile = (props) => {
+const Profile = ({profile, status, updateStatus}) => {
 
   return (
     <main className='profile'>
-      <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+      <ProfileInfo profile={profile} status={status} updateStatus={updateStatus}/>
       <MyPostsContainer />
     </main>
   );

@@ -1,27 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import { login, logout } from "../../redux/authReducer";
-import { required, maxLengthCreator } from "../../utils/validators/validators";
-import { Input } from "../common/FormsControl/FormsControl";
+import { required } from "../../utils/validators/validators";
+import { createField, Input } from "../common/FormsControl/FormsControl";
 import {Navigate} from 'react-router-dom'
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return <div>
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
-        <Field placeholder="Email" name="email" 
-        component={Input} validate={[required]}/>
+        {createField("Email", "email", [required], Input)}
       </div>
       <div>
-        <Field placeholder="Password" name="password" 
-        component={Input} validate={[required]} type="text"/>
+        {createField("Password", "password", [required], Input, "text")}
       </div>
       <div>
-        <Field component={'input'} name="rememberMe" type="checkbox" /> remember me
+        {createField(null, "rememberMe", null, Input, "checkbox")}
       </div>
-      {props.error && <div className="form-summary-error">
-        {props.error}
+      {error && <div className="form-summary-error">
+        {error}
       </div>}
       <div>
         <button>login</button>
@@ -32,16 +30,14 @@ const LoginForm = (props) => {
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 
-const Login = (props) => {
+const Login = ({ login, isAuth }) => {
   const onSubmit = (formData) => {
-    props.login(formData.email, formData.password, formData.rememberMe)
+    login(formData.email, formData.password, formData.rememberMe)
   }
-  console.log(props)
 
-  if (props.isAuth) {
+  if (isAuth) {
     return <Navigate to='/profile' />
   }
-  
 
   return <div>
     <h1>Login</h1>
