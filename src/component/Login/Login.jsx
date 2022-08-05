@@ -4,7 +4,7 @@ import { reduxForm } from "redux-form";
 import { login, logout } from "../../redux/authReducer";
 import { required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/FormsControl/FormsControl";
-import {Navigate} from 'react-router-dom'
+import {Navigate} from 'react-router-dom';
 
 const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return <div>
@@ -30,16 +30,16 @@ const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   </div>
 }
 
-const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const Login = ({ login, isAuth, captchaUrl }) => {
   const onSubmit = (formData) => {
     login(formData.email, formData.password, formData.rememberMe, formData.captcha)
-  }
+  };
 
   if (isAuth) {
     return <Navigate to='/profile' />
-  }
+  };
 
   return <div>
     <h1>Login</h1>
